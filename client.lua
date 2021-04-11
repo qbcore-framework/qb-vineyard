@@ -227,7 +227,7 @@ Citizen.CreateThread(function()
 					if nearlocation <= 3 then	
 						if not wineStarted then
 							if not loadIngredients then
-								if #(pos - vector3(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z)) <  )then
+								if #(pos - vector3(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z)) < 1 then
 									DrawText3Ds(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y,  Config.Vineyard["wine"].coords.z + 0.2, '[E] Load Ingredients')
 									if IsControlJustPressed(0, 38) then
 										if PlayerJob.name == "vineyard" then
@@ -250,7 +250,7 @@ Citizen.CreateThread(function()
 										end
 									end
 								else
-									if #(pos - vector3(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z)) <  )then
+									if #(pos - vector3(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z)) < 1 then
 										DrawText3Ds(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z + 0.2, '[E] Get Wine')
 										if IsControlJustPressed(0, 38) then
 											if PlayerJob.name == "vineyard" then
@@ -291,7 +291,7 @@ Citizen.CreateThread(function()
 				grapemaking = true
 				if nearlocation <= 3 then	
 					
-					if #(pos - vector3(Config.Vineyard["grapejuice"].coords.x, Config.Vineyard["grapejuice"].coords.y, Config.Vineyard["grapejuice"].coords.z)) <  )then
+					if #(pos - vector3(Config.Vineyard["grapejuice"].coords.x, Config.Vineyard["grapejuice"].coords.y, Config.Vineyard["grapejuice"].coords.z)) < 1 then
 						DrawText3Ds(Config.Vineyard["grapejuice"].coords.x, Config.Vineyard["grapejuice"].coords.y,  Config.Vineyard["grapejuice"].coords.z + 0.2, '[E] Make Grape Juice')
 						if IsControlJustPressed(0, 38) then
 							if PlayerJob.name == "vineyard" then
