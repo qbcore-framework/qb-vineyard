@@ -81,7 +81,7 @@ end)
 
 -- Hire/Fire
 
-QBCore.Commands.Add("hirevineyard", "Hire a player to the Vineyard!", {{name="id", help="Player ID"}}, true, function(source, args)
+--[[ QBCore.Commands.Add("hirevineyard", "Hire a player to the Vineyard!", {{name="id", help="Player ID"}}, true, function(source, args)
     local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
     local Myself = QBCore.Functions.GetPlayer(source)
     if Player ~= nil then 
@@ -99,4 +99,4 @@ QBCore.Commands.Add("firevineyard", "Fire a player to the Vineyard!", {{name="id
             Player.Functions.SetJob("unemployed")
         end
     end
-end)
+end) ]]
