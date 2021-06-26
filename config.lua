@@ -2,13 +2,13 @@ Config = {}
 
 Config.Vineyard = {
 	["start"] ={
-		coords = {x = -1928.81, y = 2059.53, z = 140.84, r = 1.0},
+		coords = vector3(-1928.81, 2059.53, 140.84),
 	},
 	["wine"] ={
-		coords = {x = -1879.54, y = 2062.55, z = 135.92, r = 1.0},
+		coords = vector3(-1879.54, 2062.55, 135.92),
 	},
 	["grapejuice"] ={
-		coords = {x = 828.76, y = 2191.16, z = 52.37, r = 1.0},
+		coords = vector3(828.76, 2191.16, 52.37),
 	}
 }
 
