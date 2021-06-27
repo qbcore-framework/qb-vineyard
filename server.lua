@@ -42,7 +42,7 @@ AddEventHandler('qb-vineyard:server:grapeJuice', function()
     local grape = xPlayer.Functions.GetItemByName('grape')
 
 	if xPlayer.PlayerData.items ~= nil then 
-        if (grape ~= nil) then 
+        if grape > 0 then 
             if grape.amount >= 16 then 
 
                 xPlayer.Functions.RemoveItem("grape", 16, false)
