@@ -1,7 +1,3 @@
-QBCore = nil
-
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
-
 RegisterNetEvent('qb-vineyard:server:getGrapes')
 AddEventHandler('qb-vineyard:server:getGrapes', function()
     local Player = QBCore.Functions.GetPlayer(source)
