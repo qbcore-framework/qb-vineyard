@@ -9,14 +9,14 @@ end)
 RegisterServerEvent('qb-vineyard:server:loadIngredients') 
 AddEventHandler('qb-vineyard:server:loadIngredients', function()
 	local xPlayer = QBCore.Functions.GetPlayer(tonumber(source))
-    local grape = xPlayer.Functions.GetItemByName('grape')
+    local grape = xPlayer.Functions.GetItemByName('grapejuice')
 
 	if xPlayer.PlayerData.items ~= nil then 
         if grape ~= nil then 
             if grape.amount >= 23 then 
 
-                xPlayer.Functions.RemoveItem("grape", 23, false)
-                TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['grape'], "remove")
+                xPlayer.Functions.RemoveItem("grapejuice", 23, false)
+                TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['grapejuice'], "remove")
                 
                 TriggerClientEvent("qb-vineyard:client:loadIngredients", source)
 
