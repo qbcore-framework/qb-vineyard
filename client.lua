@@ -115,6 +115,7 @@ Citizen.CreateThread(function()
 					TriggerEvent("qb-vineyard:client:startVineyard")
 					Citizen.Wait(20000)
 					startVineyard = false
+					pickedGrapes = 0
 				end
 			end
 		end
@@ -158,11 +159,11 @@ function pickgrapes()
 	if success then
 		TriggerServerEvent("qb-vineyard:server:getGrapes")
 		tasking = false
+		DeleteBlip()
 	end
 end
 
 function CreateBlip()
-	DeleteBlip()
 	if tasking then
 		blip = AddBlipForCoord(grapeLocations[random]["x"],grapeLocations[random]["y"],grapeLocations[random]["z"])
 	end
