@@ -74,6 +74,25 @@ AddEventHandler('qb-vineyard:server:receiveGrapeJuice', function()
 	TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['grapejuice'], "add")
 end)
 
+local sellables = {
+    grapejuice = 55,
+    wine = 65
+}
+
+RegisterServerEvent('qb-vineyard:server:sell')
+AddEventHandler('qb-vineyard:server:sell', function()
+    local src = source
+    local xPlayer = QBCore.Functions.GetPlayer(src)
+    for k,v in pairs(sellables) do
+        local item = xPlayer.Functions.GetItemByName(k)
+        if item ~= nil then
+            if xPlayer.Functions.RemoveItem(k, item.amount) then
+                TriggerClientEvent("QBCore:Notify", src, 'Sold '..item.amount..' '..k, 'success')
+                xPlayer.Functions.AddMoney('cash', v * item.amount)
+            end
+        end
+    end
+end)
 
 -- Hire/Fire
 
