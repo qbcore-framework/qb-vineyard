@@ -9,7 +9,10 @@ Config.Vineyard = {
 	},
 	["grapejuice"] ={
 		coords = vector3(828.76, 2191.16, 52.37),
-	}
+	},
+	["sell"] ={
+        coords = vector3(456.34, 130.64, 99.3),
+    },
 }
 
 Config.PickAmount = math.random(8, 12)
