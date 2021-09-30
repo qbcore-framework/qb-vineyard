@@ -359,3 +359,42 @@ function LoadAnim(dict)
         Citizen.Wait(1)
     end
 end
+
+Citizen.CreateThread(function()
+    while true do
+
+            local ped = PlayerPedId()
+            local pos1 = GetEntityCoords(ped)
+
+            
+            Sell = false
+
+            
+            local nearSell = #(pos1 - vector3(Config.Vineyard["sell"].coords.x, Config.Vineyard["sell"].coords.y, Config.Vineyard["sell"].coords.z))
+
+                if nearSell <= 15 then
+                    Sell = true
+                    if nearSell <= 3 then
+                        if not sellSell then
+                            DrawText3Ds(802.84, 2174.88, 53.07, "[E] Sell wine and grape juice") 
+                            
+                                if IsControlJustReleased(0,38) then
+                                    if PlayerJob.name == "vineyard" then
+                                        TriggerServerEvent('qb-vineyard:server:sell')
+                                    else
+                                        QBCore.Functions.Notify("I don't work here..", "error")
+                                    end
+                                end
+                        end
+                    end
+
+                end
+        
+            if not Sell then
+                Citizen.Wait(5000)
+            end
+            
+            Citizen.Wait(5)
+            
+    end
+end)
