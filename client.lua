@@ -1,3 +1,4 @@
+local QBCore = exports['qb-core']:GetCoreObject()
 local PlayerJob = {}
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
@@ -72,15 +73,15 @@ Citizen.CreateThread(function()
 			local pos = GetEntityCoords(ped)
 
 			Vineyard = false
-			
+
 			local nearlocation = #(pos - vector3(Config.Vineyard["start"].coords.x, Config.Vineyard["start"].coords.y, Config.Vineyard["start"].coords.z))
 
 				if nearlocation <= 15 then
 					Vineyard = true
 					if nearlocation <= 3 then
 						if not startVineyard then
-							DrawText3Ds(-1928.81, 2059.53, 140.84, "[E] Start Picking Grapes") 
-							
+							DrawText3Ds(-1928.81, 2059.53, 140.84, "[E] Start Picking Grapes")
+
 								if IsControlJustReleased(0,38) then
 									if PlayerJob.name == "vineyard" then
 										startVineyard = true
@@ -92,13 +93,13 @@ Citizen.CreateThread(function()
 					end
 
 				end
-		
+
 			if not Vineyard then
 				Citizen.Wait(5000)
 			end
-			
+
 			Citizen.Wait(5)
-			
+
     end
 end)
 
@@ -143,7 +144,7 @@ AddEventHandler('qb-vineyard:client:startVineyard', function()
 			DrawMarker(32, grapeLocations[random]["x"], grapeLocations[random]["y"], grapeLocations[random]["z"] + 2.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 1.0, 0.4, 255, 223, 0, 255, true, false, false, false, false, false, false)
 			if nearpicking <= 1.5 then
 				DrawMarker(2, grapeLocations[random]["x"], grapeLocations[random]["y"], grapeLocations[random]["z"] + 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
-				DrawText3Ds(grapeLocations[random]["x"], grapeLocations[random]["y"], grapeLocations[random]["z"], "[E]") 
+				DrawText3Ds(grapeLocations[random]["x"], grapeLocations[random]["y"], grapeLocations[random]["z"], "[E]")
 				if not IsPedInAnyVehicle(PlayerPedId()) and IsControlJustReleased(0,38) then
 					PickAnim()
 					pickProcess()
@@ -167,7 +168,7 @@ function CreateBlip()
 	if tasking then
 		blip = AddBlipForCoord(grapeLocations[random]["x"],grapeLocations[random]["y"],grapeLocations[random]["z"])
 	end
-    
+
     SetBlipSprite(blip, 465)
     SetBlipScale(blip, 1.0)
     SetBlipAsShortRange(blip, false)
@@ -211,12 +212,12 @@ Citizen.CreateThread(function()
 	while true do
 			local ped = PlayerPedId()
 			local pos = GetEntityCoords(ped)
-			
+
 			winemaking = false
 			local nearlocation = #(pos - vector3(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z))
 				if nearlocation <= 15 then
 					winemaking = true
-					if nearlocation <= 3 then	
+					if nearlocation <= 3 then
 						if not wineStarted then
 							if not loadIngredients then
 								if #(pos - vector3(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z)) < 1 then
@@ -262,12 +263,12 @@ Citizen.CreateThread(function()
 						end
 					end
 				end
-				
-		
+
+
 			if not winemaking then
 				Citizen.Wait(5000)
 			end
-        
+
         Citizen.Wait(5)
     end
 end)
@@ -276,13 +277,13 @@ Citizen.CreateThread(function()
 	while true do
 		local ped = PlayerPedId()
 		local pos = GetEntityCoords(ped)
-		
+
 		grapemaking = false
 		local nearlocation = #(pos - vector3(Config.Vineyard["grapejuice"].coords.x, Config.Vineyard["grapejuice"].coords.y, Config.Vineyard["grapejuice"].coords.z))
 			if nearlocation <= 15 then
 				grapemaking = true
-				if nearlocation <= 3 then	
-					
+				if nearlocation <= 3 then
+
 					if #(pos - vector3(Config.Vineyard["grapejuice"].coords.x, Config.Vineyard["grapejuice"].coords.y, Config.Vineyard["grapejuice"].coords.z)) < 1 then
 						DrawText3Ds(Config.Vineyard["grapejuice"].coords.x, Config.Vineyard["grapejuice"].coords.y,  Config.Vineyard["grapejuice"].coords.z + 0.2, '[E] Make Grape Juice')
 						if IsControlJustPressed(0, 38) then
@@ -293,15 +294,15 @@ Citizen.CreateThread(function()
 							end
 						end
 					end
-					
+
 				end
 			end
-			
-	
+
+
 		if not grapemaking then
 			Citizen.Wait(5000)
 		end
-        
+
         Citizen.Wait(5)
     end
 end)
@@ -324,7 +325,7 @@ function StartWineProcess()
             winetimer = winetimer - 1
             Citizen.Wait(1000)
 		end
-		
+
 		wineStarted = false
 		finishedWine = true
 		winetimer = Config.wineTimer
