@@ -1,26 +1,21 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local PlayerJob = {}
 
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
-AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     QBCore.Functions.GetPlayerData(function(PlayerData)
         PlayerJob = PlayerData.job
     end)
 end)
 
-RegisterNetEvent('QBCore:Client:OnJobUpdate')
-AddEventHandler('QBCore:Client:OnJobUpdate', function(JobInfo)
+RegisterNetEvent('QBCore:Client:OnJobUpdate', function(JobInfo)
     PlayerJob = JobInfo
 end)
-
 
 local tasking = false
 local startVineyard = false
 local random = 0
 local pickedGrapes = 0
 local blip = 0
-
--- Process
 local winetimer = Config.wineTimer
 local loadIngredients = false
 local wineStarted = false
@@ -66,77 +61,64 @@ DrawText3Ds = function(x, y, z, text)
     ClearDrawOrigin()
 end
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	while true do
-
-			local ped = PlayerPedId()
-			local pos = GetEntityCoords(ped)
-
-			Vineyard = false
-
-			local nearlocation = #(pos - vector3(Config.Vineyard["start"].coords.x, Config.Vineyard["start"].coords.y, Config.Vineyard["start"].coords.z))
-
-				if nearlocation <= 15 then
-					Vineyard = true
-					if nearlocation <= 3 then
-						if not startVineyard then
-							DrawText3Ds(-1928.81, 2059.53, 140.84, "[E] Start Picking Grapes")
-
-								if IsControlJustReleased(0,38) then
-									if PlayerJob.name == "vineyard" then
-										startVineyard = true
-									else
-										QBCore.Functions.Notify("I dont think I work here...", "error")
-									end
-								end
+		local ped = PlayerPedId()
+		local pos = GetEntityCoords(ped)
+		Vineyard = false
+		local nearlocation = #(pos - vector3(Config.Vineyard["start"].coords.x, Config.Vineyard["start"].coords.y, Config.Vineyard["start"].coords.z))
+			if nearlocation <= 15 then
+				Vineyard = true
+				if nearlocation <= 3 then
+					if not startVineyard then
+						DrawText3Ds(-1928.81, 2059.53, 140.84, "[E] Start Picking Grapes")
+						if IsControlJustReleased(0,38) then
+							if PlayerJob.name == "vineyard" then
+								startVineyard = true
+							else
+								QBCore.Functions.Notify("I dont think I work here...", "error")
+							end
 						end
 					end
-
 				end
-
-			if not Vineyard then
-				Citizen.Wait(5000)
 			end
-
-			Citizen.Wait(5)
-
+		if not Vineyard then
+			Wait(5000)
+		end
+		Wait(5)
     end
 end)
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	while true do
 		if startVineyard then
 			if tasking then
-				Citizen.Wait(5000)
+				Wait(5000)
 			else
 				TriggerEvent("qb-vineyard:client:startVineyard")
 				pickedGrapes = pickedGrapes + 1
 				print(pickedGrapes)
 				if pickedGrapes == Config.PickAmount then
 					TriggerEvent("qb-vineyard:client:startVineyard")
-					Citizen.Wait(20000)
+					Wait(20000)
 					startVineyard = false
 					pickedGrapes = 0
 				end
 			end
 		end
-		Citizen.Wait(5)
+		Wait(5)
 	end
 end)
 
-RegisterNetEvent('qb-vineyard:client:startVineyard')
-AddEventHandler('qb-vineyard:client:startVineyard', function()
-
+RegisterNetEvent('qb-vineyard:client:startVineyard', function()
 	if tasking then
 		return
 	end
-
 	random = math.random(1, #grapeLocations)
-
 	tasking = true
 	CreateBlip()
 	while tasking do
-		Citizen.Wait(5)
+		Wait(5)
 		local ped = PlayerPedId()
 		local pos = GetEntityCoords(ped)
 		local nearpicking = #(pos - vector3(grapeLocations[random]["x"], grapeLocations[random]["y"], grapeLocations[random]["z"]))
@@ -156,7 +138,6 @@ end)
 
 function pickgrapes()
 	local success = true
-
 	if success then
 		TriggerServerEvent("qb-vineyard:server:getGrapes")
 		tasking = false
@@ -168,7 +149,6 @@ function CreateBlip()
 	if tasking then
 		blip = AddBlipForCoord(grapeLocations[random]["x"],grapeLocations[random]["y"],grapeLocations[random]["z"])
 	end
-
     SetBlipSprite(blip, 465)
     SetBlipScale(blip, 1.0)
     SetBlipAsShortRange(blip, false)
@@ -192,9 +172,7 @@ function pickProcess()
     }, {}, {}, {}, function() -- Done
         pickgrapes()
         ClearPedTasks(PlayerPedId())
-
     end, function() -- Cancel
-
         ClearPedTasks(PlayerPedId())
         QBCore.Functions.Notify("Process Canceled", "error")
     end)
@@ -208,11 +186,10 @@ end
 
 -- Process Grapes
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	while true do
 			local ped = PlayerPedId()
 			local pos = GetEntityCoords(ped)
-
 			winemaking = false
 			local nearlocation = #(pos - vector3(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z))
 				if nearlocation <= 15 then
@@ -263,27 +240,22 @@ Citizen.CreateThread(function()
 						end
 					end
 				end
-
-
 			if not winemaking then
-				Citizen.Wait(5000)
+				Wait(5000)
 			end
-
-        Citizen.Wait(5)
+        Wait(5)
     end
 end)
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	while true do
 		local ped = PlayerPedId()
 		local pos = GetEntityCoords(ped)
-
 		grapemaking = false
 		local nearlocation = #(pos - vector3(Config.Vineyard["grapejuice"].coords.x, Config.Vineyard["grapejuice"].coords.y, Config.Vineyard["grapejuice"].coords.z))
 			if nearlocation <= 15 then
 				grapemaking = true
 				if nearlocation <= 3 then
-
 					if #(pos - vector3(Config.Vineyard["grapejuice"].coords.x, Config.Vineyard["grapejuice"].coords.y, Config.Vineyard["grapejuice"].coords.z)) < 1 then
 						DrawText3Ds(Config.Vineyard["grapejuice"].coords.x, Config.Vineyard["grapejuice"].coords.y,  Config.Vineyard["grapejuice"].coords.z + 0.2, '[E] Make Grape Juice')
 						if IsControlJustPressed(0, 38) then
@@ -294,38 +266,31 @@ Citizen.CreateThread(function()
 							end
 						end
 					end
-
 				end
 			end
-
-
 		if not grapemaking then
-			Citizen.Wait(5000)
+			Wait(5000)
 		end
-
-        Citizen.Wait(5)
+        Wait(5)
     end
 end)
 
-RegisterNetEvent('qb-vineyard:client:grapeJuice')
-AddEventHandler('qb-vineyard:client:grapeJuice', function()
+RegisterNetEvent('qb-vineyard:client:grapeJuice', function()
 	PrepareAnim()
 	grapeJuiceProcess()
 end)
 
-RegisterNetEvent('qb-vineyard:client:loadIngredients')
-AddEventHandler('qb-vineyard:client:loadIngredients', function()
+RegisterNetEvent('qb-vineyard:client:loadIngredients', function()
 	loadIngredients = true
 end)
 
 function StartWineProcess()
-    Citizen.CreateThread(function()
+    CreateThread(function()
         wineStarted = true
         while winetimer > 0 do
             winetimer = winetimer - 1
-            Citizen.Wait(1000)
+            Wait(1000)
 		end
-
 		wineStarted = false
 		finishedWine = true
 		winetimer = Config.wineTimer
@@ -341,9 +306,7 @@ function grapeJuiceProcess()
     }, {}, {}, {}, function() -- Done
         TriggerServerEvent("qb-vineyard:server:receiveGrapeJuice")
         ClearPedTasks(PlayerPedId())
-
     end, function() -- Cancel
-
         ClearPedTasks(PlayerPedId())
         QBCore.Functions.Notify("Process Canceled", "error")
     end)
@@ -358,6 +321,6 @@ end
 function LoadAnim(dict)
     while not HasAnimDictLoaded(dict) do
         RequestAnimDict(dict)
-        Citizen.Wait(1)
+        Wait(1)
     end
 end
