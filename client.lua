@@ -71,12 +71,12 @@ CreateThread(function()
 				Vineyard = true
 				if nearlocation <= 3 then
 					if not startVineyard then
-						DrawText3Ds(-1928.81, 2059.53, 140.84, "[E] Start Picking Grapes")
+						DrawText3Ds(-1928.81, 2059.53, 140.84, Lang:t("task.start_task"))
 						if IsControlJustReleased(0,38) then
 							if PlayerJob.name == "vineyard" then
 								startVineyard = true
 							else
-								QBCore.Functions.Notify("I dont think I work here...", "error")
+								QBCore.Functions.Notify(Lang:t("error.invalid_job"), "error")
 							end
 						end
 					end
@@ -126,7 +126,7 @@ RegisterNetEvent('qb-vineyard:client:startVineyard', function()
 			DrawMarker(32, grapeLocations[random]["x"], grapeLocations[random]["y"], grapeLocations[random]["z"] + 2.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 1.0, 0.4, 255, 223, 0, 255, true, false, false, false, false, false, false)
 			if nearpicking <= 1.5 then
 				DrawMarker(2, grapeLocations[random]["x"], grapeLocations[random]["y"], grapeLocations[random]["z"] + 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
-				DrawText3Ds(grapeLocations[random]["x"], grapeLocations[random]["y"], grapeLocations[random]["z"], "[E]")
+				DrawText3Ds(grapeLocations[random]["x"], grapeLocations[random]["y"], grapeLocations[random]["z"], Lang:t("task.start_task"))
 				if not IsPedInAnyVehicle(PlayerPedId()) and IsControlJustReleased(0,38) then
 					PickAnim()
 					pickProcess()
@@ -164,7 +164,7 @@ function DeleteBlip()
 end
 
 function pickProcess()
-    QBCore.Functions.Progressbar("pick_grape", "Picking Grapes ..", math.random(6000,8000), false, true, {
+    QBCore.Functions.Progressbar("pick_grape", Lang:t("progress.pick_grapes"), math.random(6000,8000), false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -174,7 +174,7 @@ function pickProcess()
         ClearPedTasks(PlayerPedId())
     end, function() -- Cancel
         ClearPedTasks(PlayerPedId())
-        QBCore.Functions.Notify("Process Canceled", "error")
+        QBCore.Functions.Notify(Lang:t("task.cancel_task"), "error")
     end)
 end
 
@@ -198,30 +198,30 @@ CreateThread(function()
 						if not wineStarted then
 							if not loadIngredients then
 								if #(pos - vector3(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z)) < 1 then
-									DrawText3Ds(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y,  Config.Vineyard["wine"].coords.z + 0.2, '[E] Load Ingredients')
+									DrawText3Ds(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y,  Config.Vineyard["wine"].coords.z + 0.2, Lang:t("task.load_ingrediants"))
 									if IsControlJustPressed(0, 38) then
 										if PlayerJob.name == "vineyard" then
 											TriggerServerEvent("qb-vineyard:server:loadIngredients")
 										else
-											QBCore.Functions.Notify("I dont think I work here...", "error")
+											QBCore.Functions.Notify(Lang:t("error.invalid_job"), "error")
 										end
 									end
 								end
 							else
 								if not finishedWine then
 									if #(pos - vector3(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z)) < 1 then
-										DrawText3Ds(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z + 0.2, '[E] Start WineProcess')
+										DrawText3Ds(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z + 0.2, Lang:t("task.wine_process"))
 										if IsControlJustPressed(0, 38) then
 											if PlayerJob.name == "vineyard" then
 												StartWineProcess()
 											else
-												QBCore.Functions.Notify("I dont think I work here...", "error")
+												QBCore.Functions.Notify(Lang:t("error.invalid_job"), "error")
 											end
 										end
 									end
 								else
 									if #(pos - vector3(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z)) < 1 then
-										DrawText3Ds(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z + 0.2, '[E] Get Wine')
+										DrawText3Ds(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z + 0.2, Lang:t("task.get_wine"))
 										if IsControlJustPressed(0, 38) then
 											if PlayerJob.name == "vineyard" then
 												TriggerServerEvent("qb-vineyard:server:receiveWine")
@@ -229,14 +229,14 @@ CreateThread(function()
 												loadIngredients = false
 												wineStarted = false
 											else
-												QBCore.Functions.Notify("I dont think I work here...", "error")
+												QBCore.Functions.Notify(Lang:t("error.invalid_job"), "error")
 											end
 										end
 									end
 								end
 							end
 						else
-							DrawText3Ds(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z - 0.4, 'Ready over '..winetimer..'s')
+							DrawText3Ds(Config.Vineyard["wine"].coords.x, Config.Vineyard["wine"].coords.y, Config.Vineyard["wine"].coords.z - 0.4, Lang:t("task.countdown",{time=winetimer}))
 						end
 					end
 				end
@@ -257,12 +257,12 @@ CreateThread(function()
 				grapemaking = true
 				if nearlocation <= 3 then
 					if #(pos - vector3(Config.Vineyard["grapejuice"].coords.x, Config.Vineyard["grapejuice"].coords.y, Config.Vineyard["grapejuice"].coords.z)) < 1 then
-						DrawText3Ds(Config.Vineyard["grapejuice"].coords.x, Config.Vineyard["grapejuice"].coords.y,  Config.Vineyard["grapejuice"].coords.z + 0.2, '[E] Make Grape Juice')
+						DrawText3Ds(Config.Vineyard["grapejuice"].coords.x, Config.Vineyard["grapejuice"].coords.y,  Config.Vineyard["grapejuice"].coords.z + 0.2, Lang:t("task.make_grape_juice"))
 						if IsControlJustPressed(0, 38) then
 							if PlayerJob.name == "vineyard" then
 								TriggerServerEvent("qb-vineyard:server:grapeJuice")
 							else
-								QBCore.Functions.Notify("I dont think I work here...", "error")
+								QBCore.Functions.Notify(Lang:t("error.invalid_job"), "error")
 							end
 						end
 					end
@@ -298,7 +298,7 @@ function StartWineProcess()
 end
 
 function grapeJuiceProcess()
-    QBCore.Functions.Progressbar("grape_juice", "Processing Grapes ..", math.random(15000,20000), false, true, {
+    QBCore.Functions.Progressbar("grape_juice", Lang:t("progress.process_grapes"), math.random(15000,20000), false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -308,7 +308,7 @@ function grapeJuiceProcess()
         ClearPedTasks(PlayerPedId())
     end, function() -- Cancel
         ClearPedTasks(PlayerPedId())
-        QBCore.Functions.Notify("Process Canceled", "error")
+        QBCore.Functions.Notify(Lang:t("task.cancel_task"), "error")
     end)
 end
 
