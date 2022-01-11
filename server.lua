@@ -16,13 +16,13 @@ RegisterNetEvent('qb-vineyard:server:loadIngredients', function()
                 TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['grapejuice'], "remove")
                 TriggerClientEvent("qb-vineyard:client:loadIngredients", source)
             else
-                TriggerClientEvent('QBCore:Notify', source, "You do not have the correct items", 'error')
+                TriggerClientEvent('QBCore:Notify', source, Lang:t("error.invalid_items"), 'error')
             end
         else
-            TriggerClientEvent('QBCore:Notify', source, "You do not have the correct items", 'error')
+            TriggerClientEvent('QBCore:Notify', source, Lang:t("error.invalid_items"), 'error')
         end
 	else
-		TriggerClientEvent('QBCore:Notify', source, "You Have Nothing...", "error")
+		TriggerClientEvent('QBCore:Notify', source, Lang:t("error.no_items"), "error")
 	end
 end)
 
@@ -36,13 +36,13 @@ RegisterNetEvent('qb-vineyard:server:grapeJuice', function()
                 TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['grape'], "remove")
                 TriggerClientEvent("qb-vineyard:client:grapeJuice", source)
             else
-                TriggerClientEvent('QBCore:Notify', source, "You do not have the correct items", 'error')
+                TriggerClientEvent('QBCore:Notify', source, Lang:t("error.invalid_items"), 'error')
             end
         else
-            TriggerClientEvent('QBCore:Notify', source, "You do not have the correct items", 'error')
+            TriggerClientEvent('QBCore:Notify', source, Lang:t("error.invalid_items"), 'error')
         end
 	else
-		TriggerClientEvent('QBCore:Notify', source, "You Have Nothing...", "error")
+		TriggerClientEvent('QBCore:Notify', source, Lang:t("error.no_items"), "error")
 	end
 end)
 
@@ -57,25 +57,3 @@ RegisterNetEvent('qb-vineyard:server:receiveGrapeJuice', function()
 	xPlayer.Functions.AddItem("grapejuice", Config.GrapeJuiceAmount, false)
 	TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['grapejuice'], "add")
 end)
-
--- Hire/Fire
-
---[[ QBCore.Commands.Add("hirevineyard", "Hire a player to the Vineyard!", {{name="id", help="Player ID"}}, true, function(source, args)
-    local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
-    local Myself = QBCore.Functions.GetPlayer(source)
-    if Player ~= nil then
-        if (Myself.PlayerData.gang.name == "la_familia") then
-            Player.Functions.SetJob("vineyard")
-        end
-    end
-end)
-
-QBCore.Commands.Add("firevineyard", "Fire a player to the Vineyard!", {{name="id", help="Player ID"}}, true, function(source, args)
-    local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
-    local Myself = QBCore.Functions.GetPlayer(source)
-    if Player ~= nil then
-        if (Myself.PlayerData.gang.name == "la_familia") then
-            Player.Functions.SetJob("unemployed")
-        end
-    end
-end) ]]
