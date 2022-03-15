@@ -136,30 +136,35 @@ end
 local grapeZones = {}
 for k=1, #grapeLocations do
 	local label = ("GrapeZone-%s"):format(k)
-	grapeZones[k] = BoxZone:Create(
-		grapeLocations[k], 1.75, 3, {
-		name=label,
-		minZ = grapeLocations[k].z-1.0,
-		maxZ = grapeLocations[k].z+1.0,
-		debugPoly=Config.Debug,
-	})
-	grapeZones[k]:onPlayerInOut(function(isPointInside, point, zone)
-		if isPointInside then
+	grapeZones[k] = {
+		isInside = false,
+		zone = BoxZone:Create(grapeLocations[k], 1.75, 3, {
+			name=label,
+			minZ = grapeLocations[k].z-1.0,
+			maxZ = grapeLocations[k].z+1.0,
+			debugPoly=Config.Debug,
+		})
+	}
+	grapeZones[k].zone:onPlayerInOut(function(isPointInside, point, zone)
+		grapeZones[k].isInside = isPointInside
+		if grapeZones[k].isInside then
 			if Config.Debug then 
 				log(Lang:t("text.zone_entered",{zone=label})) 
 				if k == random then log(Lang:t("text.valid_zone")) else log(Lang:t("text.invalid_zone")) end
 			end
 
 			if k==random then
-				while k==random do 
-					exports['qb-core']:DrawText(Lang:t("task.start_task"),'right')
-					if not IsPedInAnyVehicle(PlayerPedId()) and IsControlJustReleased(0,38) then
-						PickAnim()
-						pickProcess()
-						random = 0
+				CreateThread(function()
+					while grapeZones[k].isInside do 
+						exports['qb-core']:DrawText(Lang:t("task.start_task"),'right')
+						if not IsPedInAnyVehicle(PlayerPedId()) and IsControlJustReleased(0,38) then
+							PickAnim()
+							pickProcess()
+							random = 0
+						end
+						Wait(1)
 					end
-					Wait(1)
-				end
+				end)
 			end
 		else
 			if Config.Debug then log(Lang:t("text.zone_exited",{zone=label})) end
