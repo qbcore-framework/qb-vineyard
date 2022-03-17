@@ -16,6 +16,14 @@ local Translations = {
         ["make_grape_juice"] = "[E] Üzüm Suyu Yap",
         ["countdown"] = "Kalan süre %{time}s",
         ['cancel_task'] = "Görevi iptal ettiniz"
+    },
+    text = {
+        ["start_shift"] = "Bağda mesaiye başladın!",
+        ["end_shift"] = "Bağdaki vardiyanız sona erdi!",
+        ["valid_zone"] = "Geçerli Bölge!",
+        ["invalid_zone"] = "Geçersiz Bölge!",
+        ["zone_entered"] = "%{zone} Bölgesine Girildi",
+        ["zone_exited"] = "%{zone} Bölgesinden Çıkıldı",
     }
 }
 Lang = Locale:new({phrases = Translations, warnOnMissing = true})
