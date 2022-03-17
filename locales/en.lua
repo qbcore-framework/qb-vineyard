@@ -19,7 +19,7 @@ local Translations = {
     },
     text = {
         ["start_shift"] = "You have started your shift at the vineyard!",
-        ["end_shift"] = "Your shift at the vienyard has ended!",
+        ["end_shift"] = "Your shift at the vineyard has ended!",
         ["valid_zone"] = "Valid Zone!",
         ["invalid_zone"] = "Invalid Zone!",
         ["zone_entered"] = "%{zone} Zone Entered",
