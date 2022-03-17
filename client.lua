@@ -155,11 +155,12 @@ for k=1, #grapeLocations do
 
 			if k==random then
 				CreateThread(function()
-					while grapeZones[k].isInside do 
+					while grapeZones[k].isInside and k==random do 
 						exports['qb-core']:DrawText(Lang:t("task.start_task"),'right')
 						if not IsPedInAnyVehicle(PlayerPedId()) and IsControlJustReleased(0,38) then
 							PickAnim()
 							pickProcess()
+							exports['qb-core']:HideText()
 							random = 0
 						end
 						Wait(1)
