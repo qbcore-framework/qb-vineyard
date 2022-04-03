@@ -16,6 +16,14 @@ local Translations = {
         ["make_grape_juice"] = "[E] Fazer Sumo De Uva",
         ["countdown"] = "Tempo Restante %{time}s",
         ['cancel_task'] = "Cancelaste a tarefa"
+    },
+    text = {
+        ["start_shift"] = "O teu turno nas vinhas começou!",
+        ["end_shift"] = "O teu turno nas vinhas terminou!",
+        ["valid_zone"] = "Zona Válida!",
+        ["invalid_zone"] = "Zona Inválida!",
+        ["zone_entered"] = "Entraste Na Zona %{zone}",
+        ["zone_exited"] = "Saíste Da Zona %{zone}",
     }
 }
 Lang = Locale:new({phrases = Translations, warnOnMissing = true})
