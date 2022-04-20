@@ -6,16 +6,24 @@ local Translations = {
     },
     progress = {
         ["pick_grapes"] = "Druiven plukken ..",
-        ["process_grapes"] = "Druiven verwerken ..",
+        ["process_grapes"] = "Druiven Verwerken ..",
     },
     task = {
-        ["start_task"] = "[E] Om te beginnen",
-        ["load_ingrediants"] = "[E] Laad ingrediënten",
-        ["wine_process"] = "[E] Wijnproces starten",
-        ["get_wine"] = "[E] Haal wijn",
+        ["start_task"] = "[E] Beginnen",
+        ["load_ingrediants"] = "[E] Ingrediënten laden",
+        ["wine_process"] = "[E] Wijnproces Starten",
+        ["get_wine"] = "[E] Pak Wijn",
         ["make_grape_juice"] = "[E] Druivensap maken",
         ["countdown"] = "Resterende tijd %{time}s",
         ['cancel_task'] = "Je hebt de taak geannuleerd"
+    },
+    text = {
+        ["start_shift"] = "Je bent begonnen met je dienst in de wijngaard!",
+        ["end_shift"] = "Je dienst bij de wijngaard zit erop!",
+        ["valid_zone"] = "Geldige Zone!",
+        ["invalid_zone"] = "Ongeldige Zone!",
+        ["zone_entered"] = "%{zone} Zone Ingelopen",
+        ["zone_exited"] = "%{zone} Zone Verlaten",
     }
 }
 Lang = Locale:new({phrases = Translations, warnOnMissing = true})
