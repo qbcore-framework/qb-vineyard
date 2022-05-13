@@ -145,17 +145,17 @@ for k=1, #grapeLocations do
 			debugPoly=Config.Debug,
 		})
 	}
-	grapeZones[k].zone:onPlayerInOut(function(isPointInside, point, zone)
+	grapeZones[k].zone:onPlayerInOut(function(isPointInside, _, _)
 		grapeZones[k].isInside = isPointInside
 		if grapeZones[k].isInside then
-			if Config.Debug then 
-				log(Lang:t("text.zone_entered",{zone=label})) 
+			if Config.Debug then
+				log(Lang:t("text.zone_entered",{zone=label}))
 				if k == random then log(Lang:t("text.valid_zone")) else log(Lang:t("text.invalid_zone")) end
 			end
 
 			if k==random then
 				CreateThread(function()
-					while grapeZones[k].isInside and k==random do 
+					while grapeZones[k].isInside and k==random do
 						exports['qb-core']:DrawText(Lang:t("task.start_task"),'right')
 						if not IsPedInAnyVehicle(PlayerPedId()) and IsControlJustReleased(0,38) then
 							PickAnim()
