@@ -145,7 +145,7 @@ for k=1, #grapeLocations do
 			debugPoly=Config.Debug,
 		})
 	}
-	grapeZones[k].zone:onPlayerInOut(function(isPointInside, _, _)
+	grapeZones[k].zone:onPlayerInOut(function(isPointInside)
 		grapeZones[k].isInside = isPointInside
 		if grapeZones[k].isInside then
 			if Config.Debug then
