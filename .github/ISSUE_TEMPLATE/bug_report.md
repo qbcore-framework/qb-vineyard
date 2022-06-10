@@ -1,32 +1,32 @@
 ---
 name: Bug report
-about: Create a report to help us improve or fix something
+about: Maak een rapport om ons te helpen iets te verbeteren of op te lossen
 title: "[BUG]"
 labels: bug
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is. A stranger to qbcore should be able to read your bug report and understand how to reproduce it themselves and understand how the feature should work normally.
+**Beschrijf de bug**
+Een duidelijke en beknopte beschrijving van wat de bug is. Iemand die qbcore niet kent, zou uw bugrapport moeten kunnen lezen en begrijpen hoe hij het zelf kan reproduceren en begrijpen hoe de functie normaal zou moeten werken.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Use this item '....' (item's name from shared.lua if applicable)
-4. See error
+**Te reproduceren**
+Stappen om het gedrag te reproduceren:
+1. Ga naar '...'
+2. Klik op '....'
+3. Gebruik dit item '....' (naam van item uit shared.lua indien van toepassing)
+4. Zie fout
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Verwacht gedrag**
+Een duidelijke en beknopte beschrijving van wat je verwachtte dat er zou gebeuren.
 
 **Screenshots**
-If applicable, add screenshots to help explain your problem.
+Voeg, indien van toepassing, screenshots toe om uw probleem uit te leggen.
 
-**Questions (please complete the following information):**
- - When you last updated: [e.g. last week]
- - Are you using custom resource? which ones? [e.g. zdiscord, qb-target]
- - Have you renamed `qb-` to something custom? [e.g. yes/no]
+**Vragen (vul de volgende gegevens in):**
+  - Wanneer u voor het laatst hebt bijgewerkt: [bijv. vorige week]
+  - Gebruikt u een aangepaste bron? welke? [bijv. zdiscord, qb-target]
+  - Heb je `qb-` hernoemd naar iets op maat? [bijv. Ja nee]
 
-**Additional context**
-Add any other context about the problem here.
+**Aanvullende context**
+Voeg hier een andere context over het probleem toe.
