@@ -18,4 +18,11 @@ local Translations = {
         ['cancel_task'] = "თქვენ გააუქმეთ დავალება"
     }
 }
-Lang = Locale:new({phrases = Translations, warnOnMissing = true})
+
+if GetConvar('qb_locale', 'en') == 'ge' then
+    Lang = Locale:new({
+        phrases = Translations,
+        warnOnMissing = true,
+        fallbackLang = Lang,
+    })
+end

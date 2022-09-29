@@ -26,4 +26,8 @@ local Translations = {
         ["zone_exited"] = "%{zone} Zone Exited",
     }
 }
-Lang = Locale:new({phrases = Translations, warnOnMissing = true})
+
+Lang = Lang or Locale:new({
+    phrases = Translations,
+    warnOnMissing = true
+})
