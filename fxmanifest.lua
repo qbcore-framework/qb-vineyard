@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 description 'QB-Vineyard'
-version '1.1.0'
+version '1.2.0'
 
 shared_scripts {
     '@qb-core/shared/locale.lua',
@@ -12,6 +12,7 @@ shared_scripts {
 }
 
 server_script 'server.lua'
+
 client_scripts {
     '@PolyZone/client.lua',
     '@PolyZone/BoxZone.lua',
