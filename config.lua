@@ -7,7 +7,6 @@ Config = {
 	wineTimer = 180,
 	Vineyard = {
 		start ={
-			coords = vector3(-1928.81, 2059.53, 140.84),
 			zones = {
 				vector2(-1926.19, 2059.13),
 				vector2(-1925.46, 2062.16),
@@ -18,7 +17,6 @@ Config = {
 			maxZ=141.44
 		},
 		wine ={
-			coords = vector3(-1879.54, 2062.55, 135.92),
 			zones = {
 				vector2(-1873.85, 2063.01),
 				vector2(-1876.35, 2059.48),
@@ -30,7 +28,6 @@ Config = {
 			maxZ=136.42
 		},
 		grapejuice = {
-			coords = vector3(828.76, 2191.16, 52.37),
 			zones = {
 				vector2(830.91, 2194.49),
 				vector2(827.81, 2196.07),

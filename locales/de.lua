@@ -1,6 +1,5 @@
 local Translations = {
     error = {
-        ["invalid_job"] = "Ich denke ich Arbeite hier nicht...",
         ["invalid_items"] = "Du hast nicht die korrekten Gegenstände!",
         ["no_items"] = "Du hast keine Gegenstände!",
     },

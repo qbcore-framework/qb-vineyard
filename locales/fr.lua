@@ -1,8 +1,7 @@
 local Translations = {
     error = {
-        ["invalid_job"] = "Je ne pense pas que je travaille ici...",
         ["invalid_items"] = "Vous n'avez pas les bons items !",
-        ["no_items"] = "Vous n'avez aucun item !",
+        ["no_items"] = "Vous n'avez aucun item !",
     },
     progress = {
         ["pick_grapes"] = "Vendange...",
