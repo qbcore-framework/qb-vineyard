@@ -63,7 +63,7 @@ local function CreateBlip()
     SetBlipScale(blip, 1.0)
     SetBlipAsShortRange(blip, false)
     BeginTextCommandSetBlipName("STRING")
-    AddTextComponentString("Drop Off")
+    AddTextComponentSubstringPlayerName("Drop Off")
     EndTextCommandSetBlipName(blip)
 end
 
@@ -255,7 +255,7 @@ Zones[2].zone:onPlayerInOut(function(isPointInside)
 	Zones[2].isInside = isPointInside
 	if isPointInside then
 		if Config.Debug then log(Lang:t("text.zone_entered",{zone="Wine"})) end
-		
+
 		if not startVineyard and PlayerJob.name == "vineyard" then
 			CreateThread(function()
 				while Zones[2].isInside do
@@ -266,7 +266,7 @@ Zones[2].zone:onPlayerInOut(function(isPointInside)
 								QBCore.Functions.TriggerCallback('qb-vineyard:server:loadIngredients', function(result)
 									if result then loadIngredients = true end
 								end)
-								
+
 							end
 						else
 							if not finishedWine then
