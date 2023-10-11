@@ -228,6 +228,7 @@ Zones[1].zone:onPlayerInOut(function(isPointInside)
 			exports['qb-core']:DrawText(Lang:t("task.start_task"),'right')
 			CreateThread(function()
 				while Zones[1].isInside do
+					DrawMarker_2(20, Config.Vineyard.start.coords.x, Config.Vineyard.start.coords.y, Config.Vineyard.start.coords.z + 1, 0, 0, 0, 0, 0, 0, 1.75, 1.75, 1.75, 128, 0, 128, 200, true, false, 2, false, nil, nil, false, false)
 					if IsControlJustReleased(0,38) and not startVineyard then
 						startVineyard = true
 						startVinyard()
