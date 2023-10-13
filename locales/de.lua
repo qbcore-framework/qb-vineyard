@@ -10,12 +10,12 @@ local Translations = {
     },
     task = {
         ["start_task"] = "[E] zum Starten",
-        ["load_ingrediants"] = "[E] Zutaten Laden",
-        ["wine_process"] = "[E] Starte den Wein Prozess",
-        ["get_wine"] = "[E] Wein Holen",
-        ["make_grape_juice"] = "[E] Mache Wein Saft",
+        ["load_ingrediants"] = "[E] Zutaten laden",
+        ["wine_process"] = "[E] Starte den Prozess",
+        ["get_wine"] = "[E] Wein nehmen",
+        ["make_grape_juice"] = "[E] Mache Wein",
         ["countdown"] = "Zeit übrig %{time}",
-        ['cancel_task'] = "Du hast deine Aufgabe Abgebrochen"
+        ['cancel_task'] = "Du hast die Aufgabe abgebrochen"
     }
 }
 
