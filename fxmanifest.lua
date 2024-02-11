@@ -1,7 +1,8 @@
 fx_version 'cerulean'
 game 'gta5'
-
-description 'QB-Vineyard'
+lua54 'yes'
+author 'Kakarot'
+description 'Allows players to work at the vineyard for items to sell'
 version '1.2.0'
 
 shared_scripts {
@@ -11,17 +12,10 @@ shared_scripts {
     'config.lua'
 }
 
-server_script 'server.lua'
-
 client_scripts {
     '@PolyZone/client.lua',
     '@PolyZone/BoxZone.lua',
     'client.lua'
 }
 
-dependencies {
-    'qb-core',
-    'PolyZone'
-}
-
-lua54 'yes'
+server_script 'server.lua'
